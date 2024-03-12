@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 
-export function SpinningCube({ args, color }) {
+export function SpinningCube({ args=[1, 1, 1], color="blue" }) {
 
   function MeshComponent({ args, color }) {
     const meshRef = useRef()
@@ -22,7 +22,7 @@ export function SpinningCube({ args, color }) {
 
   return (
     <Canvas>
-      <directionalLight position={[-2, 2, 10]}/>
+      <directionalLight position={[-2, 2, 10]} />
       <MeshComponent args={args} color={color} />
     </Canvas>
   )
