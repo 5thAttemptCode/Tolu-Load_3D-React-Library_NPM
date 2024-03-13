@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 
-export function SpinningCube({ args=[1, 1, 1], color="blue" }) {
+export function SpinningCube({ size = 1, color="blue" }) {
 
-  function MeshComponent({ args, color }) {
+  function MeshComponent({ size, color }) {
     const meshRef = useRef()
     
     useFrame((state, delta) => {
@@ -14,7 +14,7 @@ export function SpinningCube({ args=[1, 1, 1], color="blue" }) {
     
     return (
       <mesh ref={meshRef} rotation={[0.5, 0.5, 0.5]}>
-        <boxGeometry args={args} />
+        <boxGeometry args={[size, size, size]} />
         <meshStandardMaterial color={color} />
       </mesh>
     )
@@ -23,7 +23,7 @@ export function SpinningCube({ args=[1, 1, 1], color="blue" }) {
   return (
     <Canvas>
       <directionalLight position={[-2, 2, 10]} />
-      <MeshComponent args={args} color={color} />
+      <MeshComponent size={size} color={color} />
     </Canvas>
   )
 }
