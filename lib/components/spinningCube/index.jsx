@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 
+
 export function SpinningCube({ size = 1, color="blue" }) {
 
   function MeshComponent({ size, color }) {
@@ -13,7 +14,7 @@ export function SpinningCube({ size = 1, color="blue" }) {
     })
     
     return (
-      <mesh ref={meshRef} rotation={[0.5, 0.5, 0.5]}>
+      <mesh ref={meshRef} rotation={[0, 0, 0]}>
         <boxGeometry args={[size, size, size]} />
         <meshStandardMaterial color={color} />
       </mesh>
