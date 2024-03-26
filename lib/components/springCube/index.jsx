@@ -3,7 +3,8 @@ import { Canvas } from '@react-three/fiber'
 import { animated, useSpring } from '@react-spring/three'
 
 
-const SpringMesh = ({ size = 1, color="blue", mass = 10, tension= 900, friction = 70 }) => {
+const SpringMesh = ({ color="blue", mass = 10, tension= 900, friction = 70 }) => {
+
   const [step, setStep] = useState(0)
   const steps = [-Math.PI / 2, -Math.PI, -1.5 * Math.PI, -2 * Math.PI]
 
@@ -17,19 +18,30 @@ const SpringMesh = ({ size = 1, color="blue", mass = 10, tension= 900, friction 
 
   return (
     <animated.mesh rotation-y={rotation}>
-      <boxGeometry args={[size, size, size]} />
-      <meshStandardMaterial color={color} />
+      <icosahedronGeometry args={[1.5, 0]} />
+      <meshPhysicalMaterial 
+        metalness={0}
+        color={color} 
+        roughness={0.2}
+        transmission={1}
+        thickness={1}
+      />
     </animated.mesh>
   )
 }
 
-export function SpringCube({ size = 1, color="blue" }) {
+export function FronstedIco({ size = 1, color="blue" }) {
     
   return (
-    <Canvas camera={{ position: [5, 5, 5], fov: 25 }}>
-      <directionalLight position={[-2, 2, 10]} />
-      <ambientLight />
-      <SpringMesh size={size} color={color} />
-    </Canvas>
+    <div className="canvas">
+      <Canvas camera={{ position: [5, 5, 5], fov: 55 }}>
+        <directionalLight position={[0, 5, 10]} />
+        <SpringMesh size={size} />
+        <mesh>
+          <icosahedronGeometry args={[0.5, 0]} />
+          <meshStandardMaterial />
+        </mesh>
+      </Canvas>
+    </div>
   )
 }
