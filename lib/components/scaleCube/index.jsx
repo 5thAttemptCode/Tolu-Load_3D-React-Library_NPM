@@ -1,9 +1,10 @@
 import React from 'react'
+import '../main.css'
 import { Canvas } from '@react-three/fiber'
 import { useSpring, animated } from '@react-spring/three'
 
 
-const Cube = () => {
+const Ico = ({ color }) => {
   const { scale } = useSpring({
     from: { scale: [1, 1, 1] },
     to: async next => {
@@ -16,19 +17,23 @@ const Cube = () => {
   })
   
     return (
+      <>
       <animated.mesh scale={scale}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="blue" />
+        <icosahedronGeometry args={[1.5, 1]}/>
+        <meshStandardMaterial wireframe color={color} />
       </animated.mesh>
+      </>
     )
   }
 
-export function ScaleCube() {
+export function ScaleIco({ color="blue" }) {
   return (
-    <Canvas camera={{ position: [5, 5, 5], fov: 25 }}>
-      <directionalLight position={[-2, 2, 10]} />
-      <ambientLight />
-      <Cube />
-    </Canvas>
+    <div className="canvas">
+      <Canvas camera={{ position: [5, 5, 5], fov: 55 }}>
+        <directionalLight position={[-2, 2, 10]} />
+        <ambientLight />
+        <Ico color={color} />
+      </Canvas>
+    </div>
   )
 }
