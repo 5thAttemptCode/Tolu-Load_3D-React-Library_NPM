@@ -4,6 +4,8 @@ import { Canvas, useFrame } from '@react-three/fiber'
 
 export function Stairs({ color="blue" }) {
 
+  const onMobile = window.innerWidth < 930
+
   const steps = 5
   const decValue = 0.3
   
@@ -32,9 +34,18 @@ export function Stairs({ color="blue" }) {
 
   return (
     <div className="canvas">
-      <Canvas camera={{ position: [5, 5, 5], fov: 55 }}>
+      <Canvas camera={{ position: [5, 5, 5], fov:(onMobile ? 55 : 45) }}>
         <directionalLight intensity={2} position={[-2, 2, 10]} />
-        {Array(steps).fill().map((_, index) => <Step yPosition={0.3 * index} delay={0.2*index} step={index} key={index}/>)}
+        { 
+          Array(steps).fill().map((_, index) => 
+            <Step 
+              yPosition={0.3 * index} 
+              delay={0.2*index} 
+              step={index} 
+              key={index}
+            />
+          )
+        }
       </Canvas>
     </div>
   )
