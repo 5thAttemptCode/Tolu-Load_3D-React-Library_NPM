@@ -20,16 +20,19 @@ const Ico = ({ color }) => {
       <>
       <animated.mesh scale={scale}>
         <icosahedronGeometry args={[1.5, 1]}/>
-        <meshStandardMaterial wireframe color={color} />
+        <meshBasicMaterial wireframe color={color} />
       </animated.mesh>
       </>
     )
   }
 
 export function ScaleIco({ color="blue" }) {
+
+  const onMobile = window.innerWidth < 930
+
   return (
     <div className="canvas">
-      <Canvas camera={{ position: [5, 5, 5], fov: 55 }}>
+      <Canvas camera={{ position: [5, 5, 5], fov:( onMobile ? 65 : 55) }}>
         <directionalLight position={[-2, 2, 10]} />
         <ambientLight />
         <Ico color={color} />
