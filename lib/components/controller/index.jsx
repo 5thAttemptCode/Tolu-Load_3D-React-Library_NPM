@@ -20,9 +20,11 @@ const RotatingMesh = ({ children, position, rotation, axis }) => {
 
 export function PlayStation({ colorCross="#3f8be8", colorCircle="#9c2f22", colorCube="#bc6ca5", colorTriangle="#4ca46d"}) {
 
+  const onMobile = window.innerWidth < 930
+
   return (
     <div className="canvas">
-      <Canvas camera={{ position: [0, 0.2, 3.1], fov: 60 }}>
+      <Canvas camera={{ position: [0, 0.2, 3.1], fov:(onMobile ? 75 : 60) }}>
         <ambientLight />
         {/* Cross */}
         <RotatingMesh axis="y" position={[0, -1.2, 0]} rotation={[0, 1.6, 0]}>
