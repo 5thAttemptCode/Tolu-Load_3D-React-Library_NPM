@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { animated, useSpring } from '@react-spring/three'
 
 
-const SpringMesh = ({ color={color}, mass = 10, tension= 900, friction = 70 }) => {
+const GlassGeometry = ({ color={color}, mass = 10, tension= 900, friction = 70 }) => {
 
   const [step, setStep] = useState(0)
   const steps = [-Math.PI / 2, -Math.PI, -1.5 * Math.PI, -2 * Math.PI]
@@ -31,12 +31,14 @@ const SpringMesh = ({ color={color}, mass = 10, tension= 900, friction = 70 }) =
 }
 
 export function FronstedIco({ color="blue" }) {
+
+  const onMobile = window.innerWidth < 930
     
   return (
     <div className="canvas">
-      <Canvas camera={{ position: [5, 5, 5], fov: 55 }}>
+      <Canvas camera={{ position: [5, 5, 5], fov:(onMobile ? 35 : 55) }}>
         <directionalLight position={[0, 5, 10]} />
-        <SpringMesh color={color} />
+        <GlassGeometry color={color} />
         <mesh>
           <icosahedronGeometry args={[0.5, 0]} />
           <meshStandardMaterial />
