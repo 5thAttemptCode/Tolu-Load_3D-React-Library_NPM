@@ -4,7 +4,9 @@ import { animated, useSpring } from '@react-spring/three'
 import { Canvas } from '@react-three/fiber'
 
 
-export function SpinTriangle({ colorLeftBox="blue", colorRightBox="cyan" }) {
+export function RotatingRectangles({ colorLeftBox="blue", colorRightBox="cyan" }) {
+
+  const onMobile = window.innerWidth < 930
 
   const Triangle = ({ mass = 10, tension= 900, friction = 70, rotateDirection = 1, posXYZ=[0, 0, 0], children }) => {
     const [step, setStep] = useState(0);
@@ -23,11 +25,11 @@ export function SpinTriangle({ colorLeftBox="blue", colorRightBox="cyan" }) {
         {children}
       </animated.mesh>
     )
-};
+  }
 
   return (
     <div className="canvas">
-      <Canvas camera={{ position: [-8, 2, 10], fov: 30 }}>
+      <Canvas camera={{ position: [-8, 2, 10], fov:(onMobile ? 45 : 30) }}>
         <ambientLight intensity={0.75} />
         <directionalLight intensity={2.5}/>
         <group position={[0.75, 0, 0]}>
