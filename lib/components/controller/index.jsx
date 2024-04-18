@@ -18,7 +18,7 @@ const RotatingMesh = ({ children, position, rotation, axis }) => {
 }
 
 
-export function PlayStation({ colorCross="#3f8be8", colorCircle="#9c2f22", colorCube="#bc6ca5", colorTriangle="#4ca46d"}) {
+export function Controller({ colorCross="#3f8be8", colorCircle="#9c2f22", colorCube="#bc6ca5", colorTriangle="#4ca46d"}) {
 
   const onMobile = window.innerWidth < 930
 
