@@ -26,7 +26,7 @@ const Ico = ({ color }) => {
     )
   }
 
-export function ScaleIco({ color="blue" }) {
+export function ScalingIco({ color="blue" }) {
 
   const onMobile = window.innerWidth < 930
 
